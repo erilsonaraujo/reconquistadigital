@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import { useAppStore } from "@/store/appStore";
-import { daysData } from "@/data/days";
+import { daysContent } from "@/data/daysContent";
 import { Brain, Sparkles, Flame, CheckCircle, ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function DayContentPage() {
@@ -19,7 +19,7 @@ export default function DayContentPage() {
   const [activeSection, setActiveSection] = useState<number | null>(0);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  const dayContent = daysData.find((d) => d.id === dayId);
+  const dayContent = daysContent.find((d) => d.day === dayId);
 
   useEffect(() => {
     if (dayId > currentDay) {
@@ -52,14 +52,14 @@ export default function DayContentPage() {
       id: 1,
       icon: Sparkles,
       title: "🔮 Tarot & Energia",
-      content: dayContent.tarot,
+      content: `${dayContent.tarot.card}\n\n${dayContent.tarot.meaning}`,
       color: "amber",
     },
     {
       id: 2,
       icon: Flame,
       title: "🕯️ Ritual Prático",
-      content: dayContent.ritual,
+      content: `${dayContent.ritual.name}\n\n${dayContent.ritual.steps.map((step, i) => `${i + 1}. ${step}`).join("\n")}`,
       color: "orange",
     },
   ];
@@ -72,7 +72,7 @@ export default function DayContentPage() {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-10 glass-card border-b border-slate-800"
+        className="sticky top-0 z-10 bg-slate-950/90 backdrop-blur-md border-b border-slate-800"
       >
         <div className="p-6">
           <button
@@ -103,7 +103,7 @@ export default function DayContentPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="glass-card rounded-2xl overflow-hidden"
+              className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden"
             >
               <button
                 onClick={() => setActiveSection(activeSection === section.id ? null : section.id)}
@@ -155,7 +155,7 @@ export default function DayContentPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="fixed bottom-20 left-0 right-0 p-6 glass-card border-t border-slate-800"
+        className="fixed bottom-20 left-0 right-0 p-6 bg-slate-900/90 backdrop-blur-md border-t border-slate-800"
       >
         {isAlreadyCompleted ? (
           <div className="flex items-center justify-center gap-2 text-green-400 py-3">
@@ -174,8 +174,9 @@ export default function DayContentPage() {
         ) : (
           <motion.button
             whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
             onClick={handleComplete}
-            className="w-full py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 rounded-2xl font-semibold flex items-center justify-center gap-2"
+            className="w-full py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 rounded-2xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25"
           >
             <CheckCircle className="w-5 h-5" />
             Marcar como Concluído

@@ -3,45 +3,32 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useAppStore } from "@/store/appStore";
 import { BookOpen, Save, ArrowLeft } from "lucide-react";
-
-interface DiaryEntry {
-  date: string;
-  content: string;
-}
 
 export default function DiarioPage() {
   const router = useRouter();
+  const saveDiaryEntry = useAppStore((state) => state.saveDiaryEntry);
+  const getDiaryEntry = useAppStore((state) => state.getDiaryEntry);
+  const diaryEntries = useAppStore((state) => state.diaryEntries);
+  
   const [content, setContent] = useState("");
   const [isSaved, setIsSaved] = useState(false);
-  const [entries, setEntries] = useState<DiaryEntry[]>([]);
 
-  // Load entries on mount
+  // Load today's entry on mount
   useEffect(() => {
-    const savedEntries = localStorage.getItem("diario-entries");
-    if (savedEntries) {
-      setEntries(JSON.parse(savedEntries));
-      
-      // Load today's entry if exists
-      const today = new Date().toISOString().split("T")[0];
-      const todayEntry = JSON.parse(savedEntries).find((e: DiaryEntry) => e.date === today);
-      if (todayEntry) {
-        setContent(todayEntry.content);
-      }
+    const today = new Date().toISOString().split("T")[0];
+    const todayEntry = getDiaryEntry(today);
+    if (todayEntry) {
+      setContent(todayEntry);
     }
-  }, []);
+  }, [getDiaryEntry]);
 
   const handleSave = () => {
     if (!content.trim()) return;
 
     const today = new Date().toISOString().split("T")[0];
-    const newEntry: DiaryEntry = { date: today, content };
-
-    let updatedEntries = entries.filter((e) => e.date !== today);
-    updatedEntries.push(newEntry);
-    
-    setEntries(updatedEntries);
-    localStorage.setItem("diario-entries", JSON.stringify(updatedEntries));
+    saveDiaryEntry(today, content);
     
     setIsSaved(true);
     setTimeout(() => setIsSaved(false), 2000);
@@ -56,7 +43,12 @@ export default function DiarioPage() {
     }, 30000);
 
     return () => clearInterval(interval);
-  }, [content, entries]);
+  }, [content]);
+
+  // Get entries as array for display
+  const entriesArray = Object.entries(diaryEntries)
+    .map(([date, content]) => ({ date, content }))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="min-h-screen pb-24">
@@ -64,7 +56,7 @@ export default function DiarioPage() {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-10 glass-card border-b border-slate-800"
+        className="sticky top-0 z-10 bg-slate-950/90 backdrop-blur-md border-b border-slate-800"
       >
         <div className="p-6">
           <button
@@ -99,7 +91,7 @@ export default function DiarioPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="glass-card rounded-2xl p-4"
+          className="bg-slate-900 border border-slate-800 rounded-2xl p-4"
         >
           <textarea
             value={content}
@@ -120,7 +112,7 @@ export default function DiarioPage() {
         </motion.div>
 
         {/* Previous entries preview */}
-        {entries.length > 0 && (
+        {entriesArray.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +123,7 @@ export default function DiarioPage() {
               Entradas Anteriores
             </h3>
             <div className="space-y-3">
-              {entries.slice(-5).reverse().map((entry, index) => (
+              {entriesArray.slice(0, 5).map((entry, index) => (
                 <motion.button
                   key={entry.date}
                   initial={{ opacity: 0, x: -20 }}
@@ -141,7 +133,7 @@ export default function DiarioPage() {
                     setContent(entry.content);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className="w-full glass-card rounded-xl p-4 text-left hover:bg-slate-800/50 transition-colors"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-left hover:bg-slate-800/50 transition-colors"
                 >
                   <p className="text-amber-400 text-sm font-medium mb-1">
                     {new Date(entry.date).toLocaleDateString("pt-BR")}
@@ -161,15 +153,16 @@ export default function DiarioPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="fixed bottom-20 left-0 right-0 p-6 glass-card border-t border-slate-800"
+        className="fixed bottom-20 left-0 right-0 p-6 bg-slate-900/90 backdrop-blur-md border-t border-slate-800"
       >
         <motion.button
           whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
           onClick={handleSave}
           disabled={!content.trim()}
           className={`w-full py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all ${
             content.trim()
-              ? "bg-gradient-to-r from-violet-600 to-violet-700 text-white"
+              ? "bg-gradient-to-r from-violet-600 to-violet-700 text-white shadow-lg shadow-violet-600/25"
               : "bg-slate-800 text-slate-600 cursor-not-allowed"
           }`}
         >
@@ -179,14 +172,14 @@ export default function DiarioPage() {
       </motion.div>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 glass-card border-t border-slate-800 px-6 py-4 z-10">
+      <nav className="fixed bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-slate-800 px-6 py-4 z-10">
         <div className="flex justify-around">
           <button
             onClick={() => router.push("/dashboard")}
             className="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-colors"
           >
             <BookOpen className="w-6 h-6" />
-            <span className="text-xs">Jornada</span>
+            <span className="text-xs font-medium">Jornada</span>
           </button>
           <button
             onClick={() => router.push("/diario")}
@@ -195,7 +188,7 @@ export default function DiarioPage() {
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
-            <span className="text-xs">Diário</span>
+            <span className="text-xs font-medium">Diário</span>
           </button>
         </div>
       </nav>

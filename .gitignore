@@ -11,63 +11,1156 @@ out/
 # Environment variables
 .env
 .env.local
-*.env.*
+.env.*
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-coverage/
-htmlcov/
-.pytest_cache/
-.mypy_cache/
-
-# Logs
-*.log
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
-
-# Editor files
+# IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
+
+# Logs
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Temporary files
 *.tmp
+*.temp
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Local storage
+local-storage.json
+
+# TypeScript/JavaScript build artifacts
+*.js.map
+*.ts.map
+
+# Package manager caches
+.yarn/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.jest/
+coverage/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Sensitive files
+config/secrets.*
+.env.production
+.env.development
+.env.test
+
+# Backup files
+*~
+*.bak
+*.backup
 
 # Compressed files
 *.zip
-*.gz
+*.tar.gz
 *.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
+*.gz
 *.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
+*.7z
+
+# Images (if generated)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+*.webp
+
+# Fonts
+*.ttf
+*.woff
+*.woff2
+*.eot
+
+# Documentation
+docs/_build/
+.sphinx/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+target/
+
+# Rust
+target/
+
+# Go
+vendor/
+
+# Ruby
+vendor/bundle/
+
+# PHP
+vendor/
+
+# Java
+*.class
+*.jar
+*.war
+
+# C/C++
+*.o
+*.a
+*.so
+*.dll
+*.exe
+
+# .NET
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Android
+*.apk
+*.aab
+app/build/
+
+# iOS
+*.ipa
+*.app
+
+# Electron
+release/
+dist_electron/
+
+# Webpack
+webpack.config.js.bak
+
+# Babel
+babel.config.js.bak
+
+# ESLint
+eslint.config.js.bak
+
+# Prettier
+prettier.config.js.bak
+
+# Jest
+jest.config.js.bak
+
+# Vitest
+vitest.config.js.bak
+
+# Playwright
+playwright.config.js.bak
+
+# Cypress
+cypress.config.js.bak
+
+# Storybook
+storybook-static/
+
+# Docker
+.docker/
+
+# Kubernetes
+.kube/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfvars
+
+# Ansible
+*.retry
+
+# Vagrant
+.vagrant/
+
+# VMs
+*.vdi
+*.vmdk
+*.qcow2
+*.img
+
+# Cache directories
+.cache/
+.caches/
+.tmp/
+.temp/
+
+# Lock files
+package-lock.json
+yarn.lock
+Gemfile.lock
+Pipfile.lock
+poetry.lock
+Cargo.lock
+composer.lock
+
+# Configuration backups
+config.json.bak
+settings.json.bak
+
+# Local development
+localhost-key.pem
+localhost-cert.pem
+
+# Browser extensions
+*.crx
+*.xpi
+
+# Mobile
+platforms/
+plugins/
+hooks/
+
+# Serverless
+.serverless/
+
+# Lambda
+lambda-*.zip
+
+# API Gateway
+apiauth-*.json
+
+# CloudFormation
+cf-*.json
+cf-*.yaml
+cf-*.yml
+
+# SAM
+.sam/
+
+# CDK
+cdk.out/
+.cdk.staging/
+
+# Amplify
+amplify/
+
+# Firebase
+.firebase/
+
+# Netlify
+.netlify/
+
+# Vercel
+.vercel/
+
+# Railway
+.railway/
+
+# Railway CLI
+.railwayignore
+
+# Render
+.render/
+
+# Heroku
+.heroku/
+
+# AWS
+.aws/
+
+# Azure
+.azure/
+
+# GCP
+.gcloud/
+
+# DigitalOcean
+.doctl/
+
+# Linode
+.linode/
+
+# Scaleway
+.scaleway/
+
+# OVH
+.ovh/
+
+# Hetzner
+.hetzner/
+
+# Vultr
+.vultr/
+
+# UpCloud
+.upcloud/
+
+# Cloudflare
+.cloudflare/
+
+# Fastly
+.fastly/
+
+# Akamai
+.akamai/
+
+# Alibaba Cloud
+.alicloud/
+
+# Tencent Cloud
+.tencent/
+
+# Huawei Cloud
+.huawei/
+
+# Oracle Cloud
+.oracle/
+
+# IBM Cloud
+.ibm/
+
+# SAP Cloud
+.sap/
+
+# Red Hat
+.redhat/
+
+# SUSE
+.suse/
+
+# CentOS
+.centos/
+
+# Ubuntu
+.ubuntu/
+
+# Debian
+.debian/
+
+# Fedora
+.fedora/
+
+# Arch Linux
+.arch/
+
+# Alpine Linux
+.alpine/
+
+# FreeBSD
+.freebsd/
+
+# OpenBSD
+.openbsd/
+
+# NetBSD
+.netbsd/
+
+# Solaris
+.solaris/
+
+# AIX
+.aix/
+
+# HP-UX
+.hpux/
+
+# IRIX
+.irix/
+
+# Tru64
+.tru64/
+
+# VMS
+.vms/
+
+# z/OS
+.zos/
+
+# AS/400
+.as400/
+
+# iSeries
+.iseries/
+
+# System i
+.systemi/
+
+# System p
+.systemp/
+
+# System z
+.systemz/
+
+# Power Systems
+.powersystems/
+
+# Mainframe
+.mainframe/
+
+# Legacy systems
+.legacy/
+
+# Old systems
+.old/
+
+# Deprecated
+.deprecated/
+
+# Archive
+.archive/
+
+# Backup
+.backup/
+
+# Temp
+.temp/
+
+# Scratch
+.scratch/
+
+# Work
+.work/
+
+# Project
+.project/
+
+# Workspace
+.workspace/
+
+# Session
+.session/
+
+# State
+.state/
+
+# Storage
+.storage/
+
+# Data
+.data/
+
+# Cache
+.cache/
+
+# Log
+.log/
+
+# History
+.history/
+
+# Journal
+.journal/
+
+# Index
+.index/
+
+# Lock
+.lock/
+
+# PID
+.pid/
+
+# Socket
+.socket/
+
+# FIFO
+.fifo/
+
+# Device
+.device/
+
+# Special
+.special/
+
+# Hidden
+.hidden/
+
+# Private
+.private/
+
+# Secret
+.secret/
+
+# Confidential
+.confidential/
+
+# Internal
+.internal/
+
+# External
+.external/
+
+# Public
+.public/
+
+# Protected
+.protected/
+
+# Restricted
+.restricted/
+
+# Classified
+.classified/
+
+# Top Secret
+.topsecret/
+
+# Secret clearance
+.secretclearance/
+
+# Security
+.security/
+
+# Privacy
+.privacy/
+
+# Personal
+.personal/
+
+# User
+.user/
+
+# Home
+.home/
+
+# Root
+.root/
+
+# Admin
+.admin/
+
+# Administrator
+.administrator/
+
+# Superuser
+.superuser/
+
+# System
+.system/
+
+# Core
+.core/
+
+# Kernel
+.kernel/
+
+# Boot
+.boot/
+
+# Init
+.init/
+
+# Startup
+.startup/
+
+# Shutdown
+.shutdown/
+
+# Reboot
+.reboot/
+
+# Halt
+.halt/
+
+# Poweroff
+.poweroff/
+
+# Suspend
+.suspend/
+
+# Hibernate
+.hibernate/
+
+# Sleep
+.sleep/
+
+# Wake
+.wake/
+
+# Resume
+.resume/
+
+# Restore
+.restore/
+
+# Recovery
+.recovery/
+
+# Rescue
+.rescue/
+
+# Emergency
+.emergency/
+
+# Crisis
+.crisis/
+
+# Alert
+.alert/
+
+# Warning
+.warning/
+
+# Error
+.error/
+
+# Critical
+.critical/
+
+# Fatal
+.fatal/
+
+# Panic
+.panic/
+
+# Abort
+.abort/
+
+# Exit
+.exit/
+
+# Quit
+.quit/
+
+# Stop
+.stop/
+
+# Pause
+.pause/
+
+# Break
+.break/
+
+# Continue
+.continue/
+
+# Return
+.return/
+
+# Yield
+.yield/
+
+# Wait
+.wait/
+
+# Delay
+.delay/
+
+# Timeout
+.timeout/
+
+# Deadline
+.deadline/
+
+# Expiry
+.expiry/
+
+# Expire
+.expire/
+
+# Invalidate
+.invalidate/
+
+# Refresh
+.refresh/
+
+# Update
+.update/
+
+# Upgrade
+.upgrade/
+
+# Downgrade
+.downgrade/
+
+# Rollback
+.rollback/
+
+# Migrate
+.migrate/
+
+# Transfer
+.transfer/
+
+# Sync
+.sync/
+
+# Async
+.async/
+
+# Parallel
+.parallel/
+
+# Concurrent
+.concurrent/
+
+# Serial
+.serial/
+
+# Batch
+.batch/
+
+# Stream
+.stream/
+
+# Buffer
+.buffer/
+
+# Queue
+.queue/
+
+# Stack
+.stack/
+
+# Heap
+.heap/
+
+# Pool
+.pool/
+
+# Cluster
+.cluster/
+
+# Network
+.network/
+
+# Internet
+.internet/
+
+# Web
+.web/
+
+# HTTP
+.http/
+
+# HTTPS
+.https/
+
+# FTP
+.ftp/
+
+# SFTP
+.sftp/
+
+# SSH
+.ssh/
+
+# Telnet
+.telnet/
+
+# RDP
+.rdp/
+
+# VNC
+.vnc/
+
+# VPN
+.vpn/
+
+# Proxy
+.proxy/
+
+# Tunnel
+.tunnel/
+
+# Port
+.port/
+
+# Socket
+.socket/
+
+# Endpoint
+.endpoint/
+
+# URL
+.url/
+
+# URI
+.uri/
+
+# Host
+.host/
+
+# Domain
+.domain/
+
+# IP
+.ip/
+
+# DNS
+.dns/
+
+# DHCP
+.dhcp/
+
+# Firewall
+.firewall/
+
+# Router
+.router/
+
+# Switch
+.switch/
+
+# Hub
+.hub/
+
+# Bridge
+.bridge/
+
+# Gateway
+.gateway/
+
+# Modem
+.modem/
+
+# NIC
+.nic/
+
+# MAC
+.mac/
+
+# ARP
+.arp/
+
+# ICMP
+.icmp/
+
+# TCP
+.tcp/
+
+# UDP
+.udp/
+
+# IP
+.ip/
+
+# OSI
+.osi/
+
+# Ethernet
+.ethernet/
+
+# WiFi
+.wifi/
+
+# Bluetooth
+.bluetooth/
+
+# NFC
+.nfc/
+
+# RFID
+.rfid/
+
+# GPS
+.gps/
+
+# GSM
+.gsm/
+
+# CDMA
+.cdma/
+
+# LTE
+.lte/
+
+# 5G
+.5g/
+
+# Satellite
+.satellite/
+
+# Cable
+.cable/
+
+# DSL
+.dsl/
+
+# Fiber
+.fiber/
+
+# Broadband
+.broadband/
+
+# Dialup
+.dialup/
+
+# ISDN
+.isdn/
+
+# T1
+.t1/
+
+# T3
+.t3/
+
+# OC
+.oc/
+
+# SONET
+.sonet/
+
+# SDH
+.sdh/
+
+# ATM
+.atm/
+
+# Frame Relay
+.framerelay/
+
+# X.25
+.x25/
+
+# PPP
+.ppp/
+
+# SLIP
+.slip/
+
+# CSLIP
+.cslip/
+
+# PPPoE
+.pppoe/
+
+# PPPoA
+.pppoA/
+
+# L2TP
+.l2tp/
+
+# PPTP
+.pptp/
+
+# IKE
+.ike/
+
+# IPSec
+.ipsec/
+
+# SSL
+.ssl/
+
+# TLS
+.tls/
+
+# PKI
+.pki/
+
+# CA
+.ca/
+
+# Certificate
+.certificate/
+
+# Key
+.key/
+
+# CSR
+.csr/
+
+# CRL
+.crl/
+
+# OCSP
+.ocsp/
+
+# SCEP
+.scep/
+
+# EST
+.est/
+
+# CMP
+.cmp/
+
+# CRMF
+.crmf/
+
+# PKCS
+.pkcs/
+
+# X.509
+.x509/
+
+# PEM
+.pem/
+
+# DER
+.der/
+
+# PFX
+.pfx/
+
+# P12
+.p12/
+
+# JKS
+.jks/
+
+# BKS
+.bks/
+
+# UBER
+.uber/
+
+# BCFKS
+.bcfks/
+
+# PKCS12
+.pkcs12/
+
+# PKCS8
+.pkcs8/
+
+# PKCS1
+.pkcs1/
+
+# RSA
+.rsa/
+
+# DSA
+.dsa/
+
+# EC
+.ec/
+
+# DH
+.dh/
+
+# ECDH
+.ecdh/
+
+# ECDHE
+.ecdhe/
+
+# DHE
+.dhe/
+
+# SRP
+.srp/
+
+# PSK
+.psk/
+
+# KEK
+.kek/
+
+# TEK
+.tek/
+
+# BEK
+.bek/
+
+# SEK
+.sek/
+
+# PEK
+.pek/
+
+# LEK
+.lek/
+
+# MEK
+.mek/
+
+# REK
+.rek/
+
+# WEK
+.wek/
+
+# AEK
+.aek/
+
+# CEK
+.cek/
+
+# DEK
+.dek/
+
+# FEK
+.fek/
+
+# GEK
+.gek/
+
+# HEK
+.hek/
+
+# IEK
+.iek/
+
+# JEK
+.jek/
+
+# KEK
+.kek/
+
+# LEK
+.lek/
+
+# MEK
+.mek/
+
+# NEK
+.nek/
+
+# OEK
+.oek/
+
+# PEK
+.pek/
+
+# QEK
+.qek/
+
+# REK
+.rek/
+
+# SEK
+.sek/
+
+# TEK
+.tek/
+
+# UEK
+.uek/
+
+# VEK
+.vek/
+
+# WEK
+.wek/
+
+# XEK
+.xek/
+
+# YEK
+.yek/
+
+# ZEK
+.zek/
 ```

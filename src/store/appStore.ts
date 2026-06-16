@@ -12,47 +12,53 @@ interface AppState {
   completedDays: number[];
   quizCompleted: boolean;
   quizAnswers: QuizAnswers | null;
+  diaryEntries: Record<string, string>;
   setCurrentDay: (day: number) => void;
   markDayAsCompleted: (day: number) => void;
   completeQuiz: (answers: QuizAnswers) => void;
+  saveDiaryEntry: (date: string, content: string) => void;
+  getDiaryEntry: (date: string) => string | undefined;
   resetProgress: () => void;
 }
 
 export const useAppStore = create<AppState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       currentDay: 1,
       completedDays: [],
       quizCompleted: false,
       quizAnswers: null,
-      
+      diaryEntries: {},
+
       setCurrentDay: (day) => set({ currentDay: day }),
-      
-      markDayAsCompleted: (day) => set((state) => {
-        const newCompletedDays = state.completedDays.includes(day)
-          ? state.completedDays
-          : [...state.completedDays, day];
-        
-        // Unlock next day if completing current day
-        let newCurrentDay = state.currentDay;
-        if (day === state.currentDay && day < 18) {
-          newCurrentDay = day + 1;
+
+      markDayAsCompleted: (day) => {
+        const { completedDays, currentDay } = get();
+        if (!completedDays.includes(day)) {
+          set({
+            completedDays: [...completedDays, day],
+            currentDay: day === currentDay ? Math.min(day + 1, 18) : currentDay,
+          });
         }
-        
-        return {
-          completedDays: newCompletedDays,
-          currentDay: newCurrentDay,
-        };
-      }),
-      
+      },
+
       completeQuiz: (answers) => set({ quizCompleted: true, quizAnswers: answers }),
-      
-      resetProgress: () => set({
-        currentDay: 1,
-        completedDays: [],
-        quizCompleted: false,
-        quizAnswers: null,
-      }),
+
+      saveDiaryEntry: (date, content) =>
+        set((state) => ({
+          diaryEntries: { ...state.diaryEntries, [date]: content },
+        })),
+
+      getDiaryEntry: (date) => get().diaryEntries[date],
+
+      resetProgress: () =>
+        set({
+          currentDay: 1,
+          completedDays: [],
+          quizCompleted: false,
+          quizAnswers: null,
+          diaryEntries: {},
+        }),
     }),
     {
       name: 'reconquista-18-dias-storage',

@@ -1,8 +1,8 @@
 {
   "name": "Reconquista 18 Dias",
-  "short_name": "Reconquista 18",
-  "description": "Programa de 18 dias para reconquistar seu poder pessoal",
-  "start_url": "/",
+  "short_name": "Reconquista",
+  "description": "Um programa de 18 dias para reconquistar seu poder pessoal e independência emocional.",
+  "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#020617",
