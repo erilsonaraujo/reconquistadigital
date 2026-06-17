@@ -32,13 +32,13 @@ export default function BreathingModal({ isOpen, onClose }: BreathingModalProps)
           >
             <div className="bg-slate-900 border border-slate-700 rounded-3xl p-8 max-w-md mx-4 pointer-events-auto relative overflow-hidden">
               {/* Close button */}
-              <button
+              <motion.button
                 onClick={onClose}
                 whileTap={{ scale: 0.95 }}
                 className="absolute top-4 right-4 text-slate-400 hover:text-slate-200 transition-colors"
               >
                 <X size={24} />
-              </button>
+              </motion.button>
 
               {/* Title */}
               <h2 className="text-2xl font-semibold text-center text-slate-100 mb-2">
